@@ -35,10 +35,10 @@ def home_page():
     session['user_count'] = functions.get_user_count()
     try:
         if session['username']:
-            return render_template('homepage.html', username=session['username'])
-        return render_template('homepage.html')
+            return render_template('temp/cozastore/index.html', username=session['username'])
+        return render_template('index.html')
     except (KeyError, ValueError):
-        return render_template('homepage.html')
+        return render_template('index.html')
 
 
 @app.route('/profile/')
@@ -340,6 +340,10 @@ def background_process():
     except Exception as e:
         return str(e)
 
+		
+@app.route('/<user_id>/<page_id>/info',methods=['POST'])
+def post_info_page(user_id,page_id):
+	functions.post_page_requiem(user_id,page_id,request.form['desc']) 
 
 class GetDataUsingUserID(Resource):
     def post(self):

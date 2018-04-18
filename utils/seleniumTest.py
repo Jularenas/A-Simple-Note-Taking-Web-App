@@ -10,10 +10,10 @@ chrome_options.add_argument("--window-size=1920x1080")
 
 # download the chrome driver from https://sites.google.com/a/chromium.org/chromedriver/downloads and put it in the
 # current directory
-chrome_driver = os.getcwd() +"\chromedriver.exe"
+#chrome_driver = os.getcwd() +"\chromedriver.exe"
 
 # go to Google and click the I'm Feeling Lucky button
-driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
+#driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
 
 def electricistas24Horas ( name, phone , email , desc ) :
     driver.get("http://www.electricistas24horasbogota.com/contactenos")
