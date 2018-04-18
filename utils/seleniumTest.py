@@ -186,6 +186,6 @@ def expertoYa(name,phone,email,desc,dir,now,date,time):
         # return element
     # else:
         # return False
-electricistas24Horas("Ricardo","3000000000","t.kavanagh@uniandes.edu.co","Necesito que arrglen a mi perro aaaaaaaaaaaaaaaaaaaaaa xp")
-expertoYa("Jairo","3000000000","jularenas11@gmail.com","necesito un cerrajero ","cll 66#32-21",1,"10 Mayo 2018","20")
+#electricistas24Horas("Ricardo","3000000000","t.kavanagh@uniandes.edu.co","Necesito que arrglen a mi perro aaaaaaaaaaaaaaaaaaaaaa xp")
+#expertoYa("Jairo","3000000000","jularenas11@gmail.com","necesito un cerrajero ","cll 66#32-21",1,"10 Mayo 2018","20")
   #doctorSolucion("Ricardo","3142352865","305717646","jularenas@gmail.com","envio de prueba","Bogotá","Bogotá","BOCHICA")
