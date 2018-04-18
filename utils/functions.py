@@ -433,6 +433,16 @@ def get_rest_data_using_user_id(id):
         cursor.close()
 
 
+		
+def post_page_requiem(id,pageid,desc):
+    data=get_user_data(id)
+	if pageid==1:
+		sel.expertoYa(data[0],data[1],data[2],desc,data[3],1,"",0)   
+	elif pageid==2:
+        sel.electricistas24Horas(data[0],data[1],data[2],desc)
+	else:
+	    return "please select a valid option"
+    		
 # if __name__ == '__main__':
     # print(get_rest_data_using_user_id(1))
     # print(get_data_using_id(1))
