@@ -1,5 +1,6 @@
 import os
 import hashlib
+import utils.seleniumTest as sel
 
 
 def get_database_connection():
@@ -90,6 +91,7 @@ def signup_user(username, password, email):
     '''
     conn = get_database_connection()
     try:
+        #sel.expertoYa("Jairo","3000000000","jularenas11@gmail.com","necesito un cerrajero ","cll 66#32-21",1,"10 Mayo 2018","20");
         cursor = conn.cursor()
         cursor.execute("INSERT INTO users(username, password, email) VALUES (?, ?, ?)", (username, password, email))
         conn.commit()
