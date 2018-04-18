@@ -340,6 +340,10 @@ def background_process():
     except Exception as e:
         return str(e)
 
+		
+@app.route('/<user_id>/<page_id>/info',methods=['POST'])
+def post_info_page(user_id,page_id):
+	functions.post_page_requiem(user_id,page_id,request.form['desc']) 
 
 class GetDataUsingUserID(Resource):
     def post(self):
