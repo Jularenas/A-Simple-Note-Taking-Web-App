@@ -26,6 +26,8 @@ api = Api(app)
 pagedown = PageDown(app)
 parser = reqparse.RequestParser()
 app.secret_key = str(random.randint(1, 20))
+cant = 1
+
 
 @app.route('/')
 def home_page():
@@ -126,6 +128,10 @@ def add_note():
     '''
         App for adding note
     '''
+    if request.method == 'POST':
+        global cant
+        cant = cant+1
+
     form = AddNoteForm()
     form.tags.choices = functions.get_all_tags(session['id'])
 
@@ -145,7 +151,7 @@ def add_note():
 
         functions.add_note(note_title, note, note_markdown, tags, session['id'])
         return redirect('/profile/')
-    return render_template('add_note.html', form=form, username=session['username'])
+    return render_template('add_note.html', form=form, username=session['username'], cant=cant)
 
 
 @app.route("/notes/<id>/")
@@ -155,7 +161,9 @@ def view_note(id):
         App for viewing a specific note
     '''
     notes = functions.get_data_using_id(id)
-    return render_template('view_note.html', notes=notes, username=session['username'])
+    tags = functions.get_tag_using_note_id(id)
+    tag_name = functions.get_tagname_using_tag_id(tags[0])
+    return render_template('view_note.html', notes=notes, tags=tags, tag_name=tag_name, username=session['username'])
 
 
 @app.route("/notes/edit/<note_id>/", methods=['GET', 'POST'])

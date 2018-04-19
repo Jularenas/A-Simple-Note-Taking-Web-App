@@ -22,25 +22,22 @@
             </div>
             {% endfor %}
 
-            <form method="POST" action="/notes/add/">
+          <form method="POST" action="/notes/add/">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     {{ form.csrf_token }}
-                    <h3>{{ form.note_title.label }}</h3>
+                    <h3> ID Servicio</h3>
                     <br>
-                    {{ form.note_title(class='form-control no_borders') }}
+                    {{ form.note_title(class='form-control no_borders' , value = cant) }}
                     <br>
                     {% if form.tags %}
-                    <h3>{{ form.tags.label }}</h3>
+                    <h3>Tipo de Servicio</h3>
                     <br>
                     {{ form.tags(class='form-control no_borders') }}</h3>
                     {% endif %}
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <div class="inline-headers">
-                        <h3> {{ form.note.label }} </h3>
-                        <h5>
-                            (Also supports Markdown. For markdown reference visit: <a href="https://en.support.wordpress.com/markdown-quick-reference/">here</a>)
-                        </h5>
+                        <h3> Describe el servicio que deseas </h3>
                     </div>
                     <br>
                     <!-- {{ form.note(class='form-control no_borders', cols="35", rows="20") }} -->
