@@ -1,5 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait as wait
+from selenium.webdriver.support import expected_conditions as EC
+
 from selenium.webdriver.support.ui import Select
 import os
 
@@ -10,10 +14,10 @@ chrome_options.add_argument("--window-size=1920x1080")
 
 # download the chrome driver from https://sites.google.com/a/chromium.org/chromedriver/downloads and put it in the
 # current directory
-#chrome_driver = os.getcwd() +"\chromedriver.exe"
+chrome_driver = os.getcwd() +"\chromedriver.exe"
 
 # go to Google and click the I'm Feeling Lucky button
-#driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
+driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
 
 def electricistas24Horas ( name, phone , email , desc ) :
     driver.get("http://www.electricistas24horasbogota.com/contactenos")
@@ -185,7 +189,77 @@ def expertoYa(name,phone,email,desc,dir,now,date,time):
     # if element:
         # return element
     # else:
-        # return False
+          # return False
 #electricistas24Horas("Ricardo","3000000000","t.kavanagh@uniandes.edu.co","Necesito que arrglen a mi perro aaaaaaaaaaaaaaaaaaaaaa xp")
 #expertoYa("Jairo","3000000000","jularenas11@gmail.com","necesito un cerrajero ","cll 66#32-21",1,"10 Mayo 2018","20")
-  #doctorSolucion("Ricardo","3142352865","305717646","jularenas@gmail.com","envio de prueba","Bogotá","Bogotá","BOCHICA")
+#doctorSolucion("Ricardo","3142352865","305717646","jularenas@gmail.com","envio de prueba","Bogotá","Bogotá","BOCHICA")
+
+def sosExpertos(name,phone,email,desc,tipo,ciudad,barrio):
+    print("ENTRE AL METODO")
+
+    driver.get("http://sosexpertos.com/formulario.html")
+    print("ENTRE A sosExpertos")
+    print(driver.title)
+    #lucky_button = driver.find_element_by_css_selector("[name=btnI]")
+    listField = driver.find_elements_by_id("icon_prefix")
+    
+	
+    nameField =listField[0]
+    nameField.clear()
+    nameField.send_keys(name)
+
+    phoneFields = driver.find_elements_by_id("icon_telephone")
+    phoneField=phoneFields[0]
+    phoneField2=phoneFields[1]
+    phoneField.send_keys(phone)
+    phoneField2.send_keys(phone)
+    print(phoneFields)
+
+    emailField = listField[1]
+    emailField.clear()
+    emailField.send_keys(email)
+
+    comentarioField = driver.find_element_by_id("descripcion")
+    comentarioField.clear()
+    comentarioField.send_keys(desc)
+
+    ciudadField= driver.find_element_by_id("ciudad")
+    ciudadField.send_keys(ciudad)
+
+    barrioField= driver.find_element_by_id("barrio")
+    barrioField.send_keys(barrio)
+
+    radio_casa=driver.find_element_by_id("casa")
+    radioEdificio=driver.find_element_by_id("edificio")
+    radioTienda=driver.find_element_by_id("tienda")
+
+#    if tipo==1:
+#        radio_casa.click()
+#   elif tipo ==2:
+#        wait(driver, 30).until(EC.visibility_of_element_located((By.ID, "edificio"))).click()  # wait for radio-button visibility + click
+#    else:
+#        radioTienda.click()
+
+    submit = driver.find_element_by_xpath("html/body/div[3]/div[1]/form[1]/div[3]/div[1]/button[1]")
+    print(submit.get_property("innerHTML"))
+    submit.click()
+
+    driver.get_screenshot_as_file("captureSosExpertos.png")
+
+    print("-------------")
+    print("-------------")
+    print(driver.title)
+    #element2 = driver.find_element_by_id("main-content")
+    #element3=element2.find_element_by_id("block-views-user-listing-block-2")
+    #print (element2.get_attribute('innerHTML'))
+
+   # element2.find_element_by_xpath(".//span[@class='tecnico_ya']").getText()
+
+
+
+    #lucky_button.click()
+    print(driver.title)
+   # capture the screen
+    driver.get_screenshot_as_file("captureSosExpertosAfterSubmit.png")
+
+sosExpertos("Julian","3142352865","jularenas2@gmail.com","quiero remodelar mi terraza",1,"Bogotá","alqueria")
