@@ -26,6 +26,8 @@ api = Api(app)
 pagedown = PageDown(app)
 parser = reqparse.RequestParser()
 app.secret_key = str(random.randint(1, 20))
+cant = 1
+
 
 @app.route('/')
 def home_page():
@@ -73,11 +75,13 @@ def login():
     '''
         App for creating Login page
     '''
+    global cant
     form = LoginForm()
     if form.validate_on_submit():
         username = request.form['username']
         password = functions.generate_password_hash(request.form['password'])
         user_id = functions.check_user_exists(username, password)
+        cant = functions.get_number_of_notes(user_id) +1
         if user_id:
             session['username'] = username
             session['id'] = user_id
@@ -126,6 +130,10 @@ def add_note():
     '''
         App for adding note
     '''
+    if request.method == 'POST':
+        global cant
+        cant = cant+1
+
     form = AddNoteForm()
     form.tags.choices = functions.get_all_tags(session['id'])
 
@@ -145,7 +153,7 @@ def add_note():
 
         functions.add_note(note_title, note, note_markdown, tags, session['id'])
         return redirect('/profile/')
-    return render_template('add_note.html', form=form, username=session['username'])
+    return render_template('add_note.html', form=form, username=session['username'], cant=cant)
 
 
 @app.route("/notes/<id>/")
@@ -155,7 +163,9 @@ def view_note(id):
         App for viewing a specific note
     '''
     notes = functions.get_data_using_id(id)
-    return render_template('view_note.html', notes=notes, username=session['username'])
+    tags = functions.get_tag_using_note_id(id)
+    tag_name = functions.get_tagname_using_tag_id(tags[0])
+    return render_template('view_note.html', notes=notes, tags=tags, tag_name=tag_name, username=session['username'])
 
 
 @app.route("/notes/edit/<note_id>/", methods=['GET', 'POST'])
@@ -200,6 +210,8 @@ def delete_note(id):
     '''
         App for viewing a specific note
     '''
+    global cant
+    cant -= 1
     functions.delete_note_using_id(id)
     notes = functions.get_data_using_user_id(session['id'])
     tags = []

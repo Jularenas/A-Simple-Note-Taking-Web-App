@@ -5,12 +5,12 @@
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <div class="thumbnail" style="padding: 3%">
                 {% for note in notes %}
-                    <legend><h3 class="text-center"><b>Note Details:</b></h3></legend>
-                    <h4><b>Note Added on:</b> <br><br> {{ note[1] | custom_date }}</h4>
+                    <legend><h3 class="text-center"><b>Detalles de la cotización:</b></h3></legend>
+                    <h4><b>Cotización solicitada el:</b> <br><br> {{ note[1] | custom_date }}</h4>
                     <br>
-                    <h4><b>Note Updated on:</b> <br><br> {{ note[2] | custom_date }}</h4>
+                    <h4><b>Id de la cotización:</b> <br><br> {{ note[3] }}</h4>
                     <br>
-                    <h4><b>Note Title:</b> <br><br> {{ note[3] }}</h4>
+                    <h4><b>Tipo de servicio:</b><br><br>{{ tag_name }}</h4>
                 {% endfor %}
             </div>
         </div> <!-- ./column -->

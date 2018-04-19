@@ -20,21 +20,19 @@
                     <table class="table table-hover table-striped table-bordered" style="background-color: white;">
                         <thead class="text-center">
                             <tr>
-                                <th class="text-center">#</th>
-                                <th>Note Title</th>
-                                <th>Note Saved on</th>
-                                <th>Tags</th>
+                                <th>ID Cotización</th>
+                                <th>Fecha de solicitud</th>
+                                <th>Tipo de servicio</th>
                                 <th class="text-center">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for note in notes %}
                                 <tr>
-                                    <td class="text-center">{{ loop.index }}</td>
-                                    <td> <a href="/notes/{{ note[0] }}/">{{ note[3] }}</a></td>
+                                    <td>{{ note[3] }}</td>
                                     <td>{{ note[1] | custom_date }}</td>
                                     <td>
-                                            {{ tags[loop.index0] }}
+                                            <a href="/notes/{{ note[0] }}/">{{ tags[loop.index0] }}</a>
                                     </td>
                                     <td class="text-center">
                                         <a href="/notes/delete/{{ note[0] }}/"><span class="glyphicon glyphicon-trash"></span></a>
@@ -45,7 +43,7 @@
                     </table>
                 {% else %}
                     <div class="alert alert-danger">
-                        You have no notes added! Let's add one <a href="/notes/add/">here</a>
+                       No tienes ningun servicio activo! Pide uno ya <a href="/notes/add/">aqui mismo</a>
                     </div>
                 {% endif %}
             {% endif %}
