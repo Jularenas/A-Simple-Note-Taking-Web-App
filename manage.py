@@ -26,7 +26,7 @@ api = Api(app)
 pagedown = PageDown(app)
 parser = reqparse.RequestParser()
 app.secret_key = str(random.randint(1, 20))
-cant = 1
+cant = 0
 
 
 @app.route('/')
@@ -52,6 +52,11 @@ def profile():
     if request.method == 'GET':
         notes = functions.get_data_using_user_id(session['id'])
         tags = []
+        if functions.get_number_of_tags(session['id']) == 0:
+            ls = ["Electricista", "Carpintero", "Plomero", "Pintor", "Albañil"]
+            for i in ls:
+                tag = i
+                functions.add_tag(tag,session['id'])
         if notes:
             for note in notes:
                 tags_list = functions.get_tag_using_note_id(note[0])
@@ -81,7 +86,8 @@ def login():
         username = request.form['username']
         password = functions.generate_password_hash(request.form['password'])
         user_id = functions.check_user_exists(username, password)
-        cant = functions.get_number_of_notes(user_id) +1
+        if functions.get_number_of_notes(user_id) is not None:
+            cant = int(functions.get_number_of_notes(user_id))+1
         if user_id:
             session['username'] = username
             session['id'] = user_id
@@ -152,7 +158,7 @@ def add_note():
             tags = None
 
         functions.add_note(note_title, note, note_markdown, tags, session['id'])
-        return redirect('/profile/')
+        return render_template('cotizacion_hecha.html')
     return render_template('add_note.html', form=form, username=session['username'], cant=cant)
 
 

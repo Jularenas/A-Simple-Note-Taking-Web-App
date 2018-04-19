@@ -27,7 +27,7 @@
                     {{ form.csrf_token }}
                     <h3> ID Cotización</h3>
                     <br>
-                    {{ form.note_title(class='form-control no_borders' , value = cant) }}
+                    {{ form.note_title(class='form-control no_borders' , value = cant, readonly="readonly") }}
                     <br>
                     {% if form.tags %}
                     <h3>Tipo de Servicio</h3>
