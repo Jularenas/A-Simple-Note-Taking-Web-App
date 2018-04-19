@@ -262,4 +262,73 @@ def sosExpertos(name,phone,email,desc,tipo,ciudad,barrio):
    # capture the screen
     driver.get_screenshot_as_file("captureSosExpertosAfterSubmit.png")
 
+def aquaFachada(name, phone, email, localidad,desc):
+    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
+    driver.get("http://www.lavadoenbogota.com/fachadas-bogota,-d.c..html")
+    ## lucky_button = driver.find_element_by_css_selector("[name=btnI]")
+    nameField = driver.find_element_by_id("contact_request_requester_name")
+    nameField.clear()
+    nameField.send_keys(name)
+
+    phoneField = driver.find_element_by_id("contact_request_requester_number")
+    phoneField.clear()
+    phoneField.send_keys(phone)
+
+    emailField = driver.find_element_by_id("contact_request_requester_email")
+    print(emailField)
+    emailField.send_keys(email)
+
+    comentarioField = driver.find_elements_by_name("contact_request[requester_description]")
+    comentarioField[0].send_keys(desc)
+
+    comentarioField = driver.find_element_by_id("contact_request_requester_privacy")
+    comentarioField.click()
+
+    driver.get_screenshot_as_file("aquaFachada1.png")
+    submit = driver.find_element_by_name("commit")
+    print("-------------")
+    print("-------------")
+    submit.click()
+
+    # lucky_button.click()
+    print(driver.title)
+    # capture the screen
+    driver.get_screenshot_as_file("aquaFachada2.png")
+    driver.close()
+
+def serviradar(name, lastname,phone, email,desc=""):
+    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
+    driver.get("http://serviradar.com/bogota/electricistas/")
+    ## lucky_button = driver.find_element_by_css_selector("[name=btnI]")
+    nameField = driver.find_element_by_id("nombres_input")
+    nameField.clear()
+    nameField.send_keys(name)
+
+    lastnameField = driver.find_element_by_id("apellidos_input")
+    lastnameField.clear()
+    lastnameField.send_keys(lastname)
+
+    phoneField = driver.find_element_by_id("telefono_input")
+    phoneField.clear()
+    phoneField.send_keys(phone)
+
+    emailField = driver.find_element_by_id("email_input")
+    print(emailField)
+    emailField.send_keys(email)
+
+    driver.get_screenshot_as_file("serviradar1.png")
+    submit = driver.find_element_by_xpath("//button")
+    print(submit)
+    print("-------------")
+    print("-------------")
+    submit.click()
+    driver.implicitly_wait(5)
+    # lucky_button.click()
+    print(driver.title)
+    # capture the screen
+    driver.get_screenshot_as_file("serviradar2.png")
+    driver.close()
+
+serviradar("Julian", "Arenas", "3124326578","rafarz333@gmail.com")
+
 sosExpertos("Julian","3142352865","jularenas2@gmail.com","quiero remodelar mi terraza",1,"Bogotá","alqueria")
