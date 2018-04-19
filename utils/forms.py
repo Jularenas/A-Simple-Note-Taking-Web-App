@@ -32,7 +32,7 @@ class AddNoteForm(FlaskForm):
     #   your password.")], widget=TextArea())
     note = PageDownField('Your Note:')
     tags = SelectMultipleField('Note Tags:')
-    submit = SubmitField('Add Note')
+    submit = SubmitField('Pedir cotizaciones')
 
 
 class AddTagForm(FlaskForm):
