@@ -75,11 +75,13 @@ def login():
     '''
         App for creating Login page
     '''
+    global cant
     form = LoginForm()
     if form.validate_on_submit():
         username = request.form['username']
         password = functions.generate_password_hash(request.form['password'])
         user_id = functions.check_user_exists(username, password)
+        cant = functions.get_number_of_notes(user_id) +1
         if user_id:
             session['username'] = username
             session['id'] = user_id
@@ -208,6 +210,8 @@ def delete_note(id):
     '''
         App for viewing a specific note
     '''
+    global cant
+    cant -= 1
     functions.delete_note_using_id(id)
     notes = functions.get_data_using_user_id(session['id'])
     tags = []
