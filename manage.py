@@ -37,10 +37,10 @@ def home_page():
     session['user_count'] = functions.get_user_count()
     try:
         if session['username']:
-            return render_template('temp/cozastore/index.html', username=session['username'])
-        return render_template('index.html')
+            return render_template('video.html', username=session['username'])
+        return render_template('video.html')
     except (KeyError, ValueError):
-        return render_template('index.html')
+        return render_template('video.html')
 
 
 @app.route('/profile/')
