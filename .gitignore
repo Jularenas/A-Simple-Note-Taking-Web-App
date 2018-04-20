@@ -50,6 +50,7 @@ coverage.xml
 # Django stuff:
 *.log
 
+notes.db
 # Sphinx documentation
 docs/_build/
 
@@ -59,3 +60,5 @@ target/
 
 #todos
 todo.txt
+
+notes.db

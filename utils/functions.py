@@ -437,10 +437,20 @@ def get_rest_data_using_user_id(id):
 
 def post_page_requiem(id,pageid,desc):
     data = get_user_data(id)
+    user = data[0]
+    print(desc)
     if pageid == 1 :
-        sel.expertoYa(data[0],data[1],data[2],desc,data[3],1,"",0)
+        print("EntroExperto")
+        sel.expertoYa(user[7],user[6],user[5],desc,user[9],1,"",0)
     elif pageid ==2:
-        sel.electricistas24Horas(data[0],data[1],data[2],desc)
+        print("EntroElectrico")
+        sel.electricistas24Horas(user[7],user[6],user[5], desc)
+    elif pageid ==3:
+        print("EntroSosExperto")
+        sel.sosExpertos(user[7],user[6],user[6],desc,1,user[10],user[11])
+    elif pageid ==4:
+        print("EntroSosExperto")
+        sel.aquaFachada(user[7], user[6], user[5], user[9], desc)
     else:
         return "please select a valid option"
 
