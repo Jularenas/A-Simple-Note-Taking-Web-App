@@ -329,6 +329,60 @@ def serviradar(name, lastname,phone, email,desc=""):
     driver.get_screenshot_as_file("serviradar2.png")
     driver.close()
 
-serviradar("Julian", "Arenas", "3124326578","rafarz333@gmail.com")
+def hogaru(name, email, phone, city,week, horas):
+    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
+    driver.get("https://www.hogaru.com/")
+    nameField = driver.find_element_by_id("client_lead_name")
+    nameField.clear()
+    nameField.send_keys(name)
 
-sosExpertos("Julian","3142352865","jularenas2@gmail.com","quiero remodelar mi terraza",1,"Bogotá","alqueria")
+    phoneField = driver.find_element_by_id("client_lead_telephone")
+    phoneField.clear()
+    phoneField.send_keys(phone)
+
+    emailField = driver.find_element_by_id("client_lead_email")
+    print(emailField)
+    emailField.send_keys(email)
+
+    citySelector = Select(driver.find_element_by_id("client_lead_city_id"))
+    citySwitcher={
+        1: "Bogotá",
+        2: "Cali",
+        3: "Medellin"
+    }
+    citySelector.select_by_value(citySwitcher.get(city))
+
+    weekSelector = Select(driver.find_element_by_id("client_lead_num_days_interested"))
+    weekSwitcher={
+        1: "1 Día por semana",
+        2: "2 Día por semana",
+        3: "3 Día por semana",
+        4: "4 Día por semana",
+        5: "5 Día por semana",
+        6: "6 Día por semana"
+    }
+    citySelector.select_by_value(weekSwitcher.get(week))
+
+    if horas == 4:
+        radio1 = driver.find_element_by_id("client_lead_hours_interested_4")
+        radio1.click()
+    else:
+        radio2 = driver.find_element_by_id("client_lead_hours_interested_8")
+        radio2.click()
+
+    driver.get_screenshot_as_file("hogaru.png")
+    submit = driver.find_element_by_xpath("new_client_lead")
+    print(submit)
+    print("-------------")
+    print("-------------")
+    submit.submit()
+    # lucky_button.click()
+    print(driver.title)
+    # capture the screen
+    driver.get_screenshot_as_file("serviradar2.png")
+    driver.close()
+
+hogaru("Rafel", "rafarz333@gmail.com","3194244150",1,3,4 )
+#serviradar("Julian", "Arenas", "3124326578","rafarz333@gmail.com")
+
+#sosExpertos("Julian","3142352865","jularenas2@gmail.com","quiero remodelar mi terraza",1,"Bogotá","alqueria")
