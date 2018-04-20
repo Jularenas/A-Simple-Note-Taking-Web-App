@@ -196,7 +196,7 @@ def expertoYa(name,phone,email,desc,dir,now,date,time):
 
 def sosExpertos(name,phone,email,desc,tipo,ciudad,barrio):
     print("ENTRE AL METODO")
-
+    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)	
     driver.get("http://sosexpertos.com/formulario.html")
     print("ENTRE A sosExpertos")
     print(driver.title)
