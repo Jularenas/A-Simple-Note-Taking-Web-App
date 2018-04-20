@@ -329,6 +329,6 @@ def serviradar(name, lastname,phone, email,desc=""):
     driver.get_screenshot_as_file("serviradar2.png")
     driver.close()
 
-serviradar("Julian", "Arenas", "3124326578","rafarz333@gmail.com")
+#serviradar("Julian", "Arenas", "3124326578","rafarz333@gmail.com")
 
-sosExpertos("Julian","3142352865","jularenas2@gmail.com","quiero remodelar mi terraza",1,"Bogotá","alqueria")
+#sosExpertos("Julian","3142352865","jularenas2@gmail.com","quiero remodelar mi terraza",1,"Bogotá","alqueria")

@@ -21,7 +21,13 @@ CREATE TABLE `users` (
   `last_login` TIMESTAMP NOT NULL DEFAULT (strftime('%Y-%m-%d %H:%M:%S', 'now', 'localtime')),
   `username` VARCHAR(255),
   `password` VARCHAR(200),
-  `email` VARCHAR(200)
+  `email` VARCHAR(200),
+  `numero` INTEGER,
+  `nombre` VARCHAR(200),
+  `apellido` VARCHAR(200),
+  `direccion` VARCHAR(200),
+  `ciudad` VARCHAR(200),
+  `barrio` VARCHAR(200)
 );
 
 CREATE TRIGGER `triggerUserLogin` AFTER UPDATE ON `users`

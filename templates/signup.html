@@ -24,6 +24,30 @@
 
             <form method="POST" action="/signup/">
                 {{ form.csrf_token }}
+                {{ form.name.label }}
+                <br>
+                {{ form.name(class='form-control no_borders') }}
+				<br>
+                {{ form.lastname.label }}
+                <br>
+                {{ form.lastname(class='form-control no_borders') }}
+				<br>
+                {{ form.number.label }}
+                <br>
+                {{ form.number(class='form-control no_borders') }}
+				<br>
+                {{ form.adress.label }}
+                <br>
+                {{ form.adress(class='form-control no_borders') }}
+				<br>
+                {{ form.city.label }}
+                <br>
+                {{ form.city(class='form-control no_borders') }}
+				<br>
+                {{ form.neighborhood.label }}
+                <br>
+                {{ form.neighborhood(class='form-control no_borders') }}
+				<br>
                 {{ form.username.label }}
                 <br>
                 {{ form.username(class='form-control no_borders') }}
