@@ -441,10 +441,16 @@ def post_page_requiem(id,pageid,desc):
     print(desc)
     if pageid == 1 :
         print("EntroExperto")
-        sel.expertoYa(user[7],user[6],user[5],desc,user[9],1,"")
+        sel.expertoYa(user[7],user[6],user[5],desc,user[9],1,"",0)
     elif pageid ==2:
         print("EntroElectrico")
-        sel.electricistas24Horas(user[7],user[6],user[5])
+        sel.electricistas24Horas(user[7],user[6],user[5], desc)
+    elif pageid ==3:
+        print("EntroSosExperto")
+        sel.sosExpertos(user[7],user[6],user[6],desc,1,user[10],user[11])
+    elif pageid ==4:
+        print("EntroSosExperto")
+        sel.aquaFachada(user[7], user[6], user[5], user[9], desc)
     else:
         return "please select a valid option"
 

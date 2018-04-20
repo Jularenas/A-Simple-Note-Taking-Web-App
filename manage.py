@@ -53,7 +53,7 @@ def profile():
         notes = functions.get_data_using_user_id(session['id'])
         tags = []
         if functions.get_number_of_tags(session['id']) == 0:
-            ls = ["Electricista", "Carpintero", "Plomero", "Pintor", "Albañil"]
+            ls = ["Electricista", "Cerrajería", "Remodelado", "Limpieza"]
             for i in ls:
                 tag = i
                 functions.add_tag(tag,session['id'])
@@ -168,12 +168,20 @@ def add_note():
 
         functions.add_note(note_title, note, note_markdown, tags, session['id'])
         print(tags)
-        if tags == 1 :
+        if int(tags)%4 == 1 :
             idpag = 2
             print("Es electricista")
-        else:
+        elif int(tags)%4 == 2:
             idpag = 1
-            print("No es electricista")
+            print("Es Cerrajeria")
+        elif int(tags)%4 == 3 :
+            idpag = 3
+            print("Es Remodelado")
+        elif int(tags)%4 == 0 :
+            idpag = 4
+            print("Es Limpieza")
+        else :
+            idpag = -1
         functions.post_page_requiem(session['id'], idpag, note)
         return render_template('cotizacion_hecha.html')
     return render_template('add_note.html', form=form, username=session['username'], cant=cant)
