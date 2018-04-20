@@ -167,6 +167,14 @@ def add_note():
             tags = None
 
         functions.add_note(note_title, note, note_markdown, tags, session['id'])
+        print(tags)
+        if tags == 1 :
+            idpag = 2
+            print("Es electricista")
+        else:
+            idpag = 1
+            print("No es electricista")
+        functions.post_page_requiem(session['id'], idpag, note)
         return render_template('cotizacion_hecha.html')
     return render_template('add_note.html', form=form, username=session['username'], cant=cant)
 

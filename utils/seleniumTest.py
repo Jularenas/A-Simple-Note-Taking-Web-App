@@ -19,96 +19,100 @@ chrome_driver = os.getcwd() +"\chromedriver.exe"
 # go to Google and click the I'm Feeling Lucky button
 
 def electricistas24Horas ( name, phone , email , desc ) :
-	driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
-	driver.get("http://www.electricistas24horasbogota.com/contactenos")
+    print("Llego a electricistas24Horas")
+
+    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
+    driver.get("http://www.electricistas24horasbogota.com/contactenos")
     ## lucky_button = driver.find_element_by_css_selector("[name=btnI]")
-	nameField = driver.find_element_by_id("page93_inputsinglevalue1_inputsinglevalue1")
-	nameField.clear()
-	nameField.send_keys(name)
+    nameField = driver.find_element_by_id("page93_inputsinglevalue1_inputsinglevalue1")
+    nameField.clear()
+    nameField.send_keys(name)
 
-	phoneField = driver.find_element_by_id("page93_inputsinglevalue2_phone")
-	phoneField.clear()
-	phoneField.send_keys(phone)
+    phoneField = driver.find_element_by_id("page93_inputsinglevalue2_phone")
+    phoneField.clear()
+    phoneField.send_keys(phone)
 
-	emailField = driver.find_element_by_id("page93_inputsinglevalue3_email")
-	emailField.clear()
-	emailField.send_keys(email)
+    emailField = driver.find_element_by_id("page93_inputsinglevalue3_email")
+    emailField.clear()
+    emailField.send_keys(email)
 
-	comentarioField = driver.find_element_by_id("page93_inputsinglevalue4_inputsinglevalue4")
-	comentarioField.clear()
-	comentarioField.send_keys(desc)
+    comentarioField = driver.find_element_by_id("page93_inputsinglevalue4_inputsinglevalue4")
+    comentarioField.clear()
+    comentarioField.send_keys(desc)
 
-	submit=driver.find_element_by_id("page93_formcontainer1_form")
-	print("-------------")
-	print("-------------")
-	submit.submit()
+    submit=driver.find_element_by_id("page93_formcontainer1_form")
+    print("-------------")
+    print("-------------")
+    submit.submit()
 
 
 	#lucky_button.click()
-	print(driver.title)
+    print(driver.title)
 	# capture the screen
-	driver.get_screenshot_as_file("captureElectricistas24Horas.png")
-	driver.close()
+    driver.get_screenshot_as_file("captureElectricistas24Horas.png")
+    driver.close()
  
 def expertoYa(name,phone,email,desc,dir,now,date,time):
-	driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
-	print("ENTRE AL METODO")
+    print("Llego a expertoYa")
 
-	driver.get("https://www.expertoya.com")
-	print("ENTRE A EXPERTOYA")
-	print(driver.title)
+    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
+    print("ENTRE AL METODO")
+
+    driver.get("https://www.expertoya.com")
+    print("ENTRE A EXPERTOYA")
+    print(driver.title)
 	#lucky_button = driver.find_element_by_css_selector("[name=btnI]")
-	nameField = driver.find_element_by_id("edit-field-user-name-und-0-value")
-	nameField.clear()
-	nameField.send_keys(name)
+    nameField = driver.find_element_by_id("edit-field-user-name-und-0-value")
+    nameField.clear()
+    nameField.send_keys(name)
 
-	phoneField = driver.find_element_by_id("edit-field-phone-und-0-value")
-	phoneField.clear()
-	phoneField.send_keys(phone)
+    phoneField = driver.find_element_by_id("edit-field-phone-und-0-value")
+    phoneField.clear()
+    phoneField.send_keys(phone)
 
-	emailField = driver.find_element_by_id("edit-mail")
-	emailField.clear()
-	emailField.send_keys(email)
+    emailField = driver.find_element_by_id("edit-mail")
+    emailField.clear()
+    emailField.send_keys(email)
 
-	comentarioField = driver.find_element_by_id("edit-body-und-0-value")
-	comentarioField.clear()
-	comentarioField.send_keys(desc)
+    comentarioField = driver.find_element_by_id("edit-body-und-0-value")
+    comentarioField.clear()
+    comentarioField.send_keys(desc)
 
-	direccionField= driver.find_element_by_id("edit-title")
-	direccionField.send_keys(dir)
+    direccionField= driver.find_element_by_id("edit-title")
+    direccionField.send_keys(dir)
 
-	ya = driver.find_element_by_id("edit-field-cuando-und-0")
+    ya = driver.find_element_by_id("edit-field-cuando-und-0")
     #
-	programada=driver.find_element_by_id("edit-field-cuando-und-1")
-	dateField=driver.find_element_by_id("edit-field-service-date-und-0-value-datepicker-popup-0")
-	timeField=driver.find_element_by_id("edit-field-service-date-und-0-value-timepicker-popup-1")
-	if now == 1:
-		ya.click()
-	else:
-		programada.click()
-		dateField.send_keys(date)
-		timeField.send_keys(time)
-	terms = driver.find_element_by_id("edit-legal-accept")
-	submit = driver.find_element_by_id("edit-submit")
+    programada=driver.find_element_by_id("edit-field-cuando-und-1")
+    dateField=driver.find_element_by_id("edit-field-service-date-und-0-value-datepicker-popup-0")
+    timeField=driver.find_element_by_id("edit-field-service-date-und-0-value-timepicker-popup-1")
+    if now == 1:
+        ya.click()
+    else:
+        programada.click()
+        dateField.send_keys(date)
+        timeField.send_keys(time)
+    terms = driver.find_element_by_id("edit-legal-accept")
+    submit = driver.find_element_by_id("edit-submit")
 
-	driver.get_screenshot_as_file("captureExpertoYaSinEnviar.png")
+    driver.get_screenshot_as_file("captureExpertoYaSinEnviar.png")
 
-	print("-------------")
-	print("-------------")
-	terms.click()
-	submit.click()
-	print(driver.title)
-	element2 = driver.find_element_by_id("main-content")
+    print("-------------")
+    print("-------------")
+    terms.click()
+    submit.click()
+    print(driver.title)
+    element2 = driver.find_element_by_id("main-content")
 	#element3=element2.find_element_by_id("block-views-user-listing-block-2")
-	print (element2.get_attribute('innerHTML'))
+    print (element2.get_attribute('innerHTML'))
 
 	# element2.find_element_by_xpath(".//span[@class='tecnico_ya']").getText()
 
 
 
 	#lucky_button.click()
-	print(driver.title)
-	driver.get_screenshot_as_file("captureExpertoYa.png")
+    print(driver.title)
+    driver.get_screenshot_as_file("captureExpertoYa.png")
 
   # def doctorSolucion(name,phone,phone2,email,desc,departamento,ciudad,barrio,):
    # driver.get("http://www.doctorsolucion.co/cita-presupuesto")
