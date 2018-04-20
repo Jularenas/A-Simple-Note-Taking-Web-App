@@ -17,9 +17,11 @@ chrome_options.add_argument("--window-size=1920x1080")
 chrome_driver = os.getcwd() +"\chromedriver.exe"
 
 # go to Google and click the I'm Feeling Lucky button
-driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
 
 def electricistas24Horas ( name, phone , email , desc ) :
+    print("Llego a electricistas24Horas")
+
+    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
     driver.get("http://www.electricistas24horasbogota.com/contactenos")
     ## lucky_button = driver.find_element_by_css_selector("[name=btnI]")
     nameField = driver.find_element_by_id("page93_inputsinglevalue1_inputsinglevalue1")
@@ -44,18 +46,22 @@ def electricistas24Horas ( name, phone , email , desc ) :
     submit.submit()
 
 
-    #lucky_button.click()
+	#lucky_button.click()
     print(driver.title)
-    # capture the screen
+	# capture the screen
     driver.get_screenshot_as_file("captureElectricistas24Horas.png")
+    driver.close()
  
 def expertoYa(name,phone,email,desc,dir,now,date,time):
+    print("Llego a expertoYa")
+
+    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
     print("ENTRE AL METODO")
 
     driver.get("https://www.expertoya.com")
     print("ENTRE A EXPERTOYA")
     print(driver.title)
-    #lucky_button = driver.find_element_by_css_selector("[name=btnI]")
+	#lucky_button = driver.find_element_by_css_selector("[name=btnI]")
     nameField = driver.find_element_by_id("edit-field-user-name-und-0-value")
     nameField.clear()
     nameField.send_keys(name)
@@ -97,18 +103,16 @@ def expertoYa(name,phone,email,desc,dir,now,date,time):
     submit.click()
     print(driver.title)
     element2 = driver.find_element_by_id("main-content")
-    #element3=element2.find_element_by_id("block-views-user-listing-block-2")
+	#element3=element2.find_element_by_id("block-views-user-listing-block-2")
     print (element2.get_attribute('innerHTML'))
 
-   # element2.find_element_by_xpath(".//span[@class='tecnico_ya']").getText()
+	# element2.find_element_by_xpath(".//span[@class='tecnico_ya']").getText()
 
 
 
-    #lucky_button.click()
+	#lucky_button.click()
     print(driver.title)
-   # capture the screen
     driver.get_screenshot_as_file("captureExpertoYa.png")
- 
 
   # def doctorSolucion(name,phone,phone2,email,desc,departamento,ciudad,barrio,):
    # driver.get("http://www.doctorsolucion.co/cita-presupuesto")
@@ -196,7 +200,7 @@ def expertoYa(name,phone,email,desc,dir,now,date,time):
 
 def sosExpertos(name,phone,email,desc,tipo,ciudad,barrio):
     print("ENTRE AL METODO")
-
+    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)	
     driver.get("http://sosexpertos.com/formulario.html")
     print("ENTRE A sosExpertos")
     print(driver.title)
@@ -269,6 +273,10 @@ def aquaFachada(name, phone, email, localidad,desc):
     nameField = driver.find_element_by_id("contact_request_requester_name")
     nameField.clear()
     nameField.send_keys(name)
+	
+    localidadField=driver.find_element_by_id("contact_request_locality")
+    localidadField.clear()
+    localidadField.send_keys(localidad)
 
     phoneField = driver.find_element_by_id("contact_request_requester_number")
     phoneField.clear()
@@ -386,3 +394,4 @@ hogaru("Rafel", "rafarz333@gmail.com","3194244150",1,3,4 )
 #serviradar("Julian", "Arenas", "3124326578","rafarz333@gmail.com")
 
 #sosExpertos("Julian","3142352865","jularenas2@gmail.com","quiero remodelar mi terraza",1,"Bogotá","alqueria")
+

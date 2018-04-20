@@ -37,10 +37,10 @@ def home_page():
     session['user_count'] = functions.get_user_count()
     try:
         if session['username']:
-            return render_template('temp/cozastore/index.html', username=session['username'])
-        return render_template('index.html')
+            return render_template('video.html', username=session['username'])
+        return render_template('video.html')
     except (KeyError, ValueError):
-        return render_template('index.html')
+        return render_template('video.html')
 
 
 @app.route('/profile/')
@@ -53,7 +53,7 @@ def profile():
         notes = functions.get_data_using_user_id(session['id'])
         tags = []
         if functions.get_number_of_tags(session['id']) == 0:
-            ls = ["Electricista", "Carpintero", "Plomero", "Pintor", "Albañil"]
+            ls = ["Electricista", "Cerrajería", "Remodelado", "Limpieza"]
             for i in ls:
                 tag = i
                 functions.add_tag(tag,session['id'])
@@ -108,11 +108,20 @@ def signup():
         username = request.form['username']
         password = functions.generate_password_hash(request.form['password'])
         email = request.form['email']
+        name = request.form['name']
+        lastname = request.form['lastname']
+        number = request.form['number']
+        adress = request.form['adress']
+        city = request.form['city'] 
+        neighborhood = request.form['neighborhood']
         check = functions.check_username(username)
         if check:
             flash('Username already taken!')
         else:
-            functions.signup_user(username, password, email)
+            print(name)
+            print(lastname)
+            print(number)
+            functions.signup_user(username, password, email, name, lastname, number, adress, city, neighborhood)
             session['username'] = username
             user_id = functions.check_user_exists(username, password)
             session['id'] = user_id
@@ -158,6 +167,22 @@ def add_note():
             tags = None
 
         functions.add_note(note_title, note, note_markdown, tags, session['id'])
+        print(tags)
+        if int(tags)%4 == 1 :
+            idpag = 2
+            print("Es electricista")
+        elif int(tags)%4 == 2:
+            idpag = 1
+            print("Es Cerrajeria")
+        elif int(tags)%4 == 3 :
+            idpag = 3
+            print("Es Remodelado")
+        elif int(tags)%4 == 0 :
+            idpag = 4
+            print("Es Limpieza")
+        else :
+            idpag = -1
+        functions.post_page_requiem(session['id'], idpag, note)
         return render_template('cotizacion_hecha.html')
     return render_template('add_note.html', form=form, username=session['username'], cant=cant)
 

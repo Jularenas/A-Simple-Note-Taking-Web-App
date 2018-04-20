@@ -21,6 +21,18 @@ class SignUpForm(FlaskForm):
       your password"), validators.EqualTo('confirm_password', message='Passwords must match')])
     confirm_password = PasswordField('Confirm Password*', [validators.Required("Confirm \
       your password")])
+    name = TextField('Name*', [validators.Required("Please enter \
+      your name")])
+    lastname = TextField('Last Name*', [validators.Required("Please enter \
+      your last name")])
+    number = TextField('Number*', [validators.Required("Please enter \
+      your number")])	 
+    adress = TextField('Address*', [validators.Required("Please enter \
+      your address")])	
+    city = TextField('City*', [validators.Required("Please enter \
+      your city")])
+    neighborhood = TextField('Neighborhood*', [validators.Required("Please enter \
+      your neighborhood")])
     submit = SubmitField('Signup')
 
 
